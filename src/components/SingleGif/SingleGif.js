@@ -3,21 +3,19 @@ import {Figure} from "react-bootstrap";
 import FigureImage from "react-bootstrap/FigureImage";
 import FigureCaption from "react-bootstrap/FigureCaption";
 
-function SingleImage({post,style}) {
-
-    const imgPrev = post.data.preview.images[0].resolutions[post.data.preview.images[0].resolutions.length - 1].url
-    const imgUrl = imgPrev.replace(/&amp;/g, "&");
-
-        return (
+function SingleGif({post,style}) {
+    return (
         <>
             <Figure style={style}>
                 <FigureImage
                     variant="top"
-                    src={imgUrl}
+                    src={post.data.url}
                     height={post.data.preview.images[0].source.height}
                     width={post.data.preview.images[0].source.width}
                     margin='10px'
-                    controls/>
+                    controls
+                autoplay/>
+
                 <FigureCaption>
                     <h3 style={{
                         maxWidth: post.data.preview.images[0].source.width,
@@ -30,9 +28,7 @@ function SingleImage({post,style}) {
                 </FigureCaption>
             </Figure>
         </>
-        )
-
-
+    );
 }
 
-export default SingleImage;
+export default SingleGif;
