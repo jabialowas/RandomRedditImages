@@ -1,19 +1,29 @@
 import React, {useState} from 'react';
-import {InputGroup, Form, ToggleButton, OverlayTrigger, Tooltip, Accordion, Card} from "react-bootstrap";
+import {InputGroup, Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import {noDuplicates} from "./data";
+import {Typeahead} from "react-bootstrap-typeahead";
 
 function Search({onSearch, onSort, allowNSFW, statusNSFW}) {
     const [subredditName, setSubredditName] = useState("");
 
     const handleInputChange = e => {
-        e.preventDefault()
-        setSubredditName(e.target.value)
+        console.log(e[0]);
+       if(e[0] instanceof Object){
+        setSubredditName(e[0].label)
+       } else {
+           setSubredditName(e[0])
+       }
+
     }
     const handleChangeSubreddit = e => {
         e.preventDefault()
-        if(subredditName.length > 3){
-        onSearch(subredditName.split(" ").join("+"))
-        }
+        setSubredditName(e.target.value)
+        console.log(e.target.value);
+        console.log(subredditName);
+            if(typeof subredditName !== 'undefined'){
+            onSearch(subredditName.toString().split(" ").join("+"))
+            }
     }
 
     const handleChangeSort = e => {
@@ -23,21 +33,28 @@ function Search({onSearch, onSort, allowNSFW, statusNSFW}) {
     return (
         <>
         <InputGroup style={{
-            display: 'inline-flex',
             justifyContent: 'center',
             alignItems: 'center'
         }}>
             <InputGroup.Prepend>
-
-
                 <InputGroup.Text>reddit/r/</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type='text'
-                          aria-label='subreddit'
-                          placeholder='For multiple subreddits seperate them with space (ex. aww all) '
-                          onBlur={handleChangeSubreddit}
-                          onChange={handleInputChange}
-                          />
+            {/*<Form.Control type='text'*/}
+            {/*              aria-label='subreddit'*/}
+            {/*              placeholder='For multiple subreddits seperate them with space (ex. aww all) '*/}
+            {/*              onBlur={handleChangeSubreddit}*/}
+            {/*              onChange={handleInputChange}*/}
+            {/*              />*/}
+            <Typeahead
+                allowNew
+                selectHintOnEnter
+                minLength={2}
+                id="subredditNames"
+                newSelectionPrefix="Or search:  "
+                options={noDuplicates}
+                placeholder="Search subreddit...  (for search from multiple subreddits "
+                onChange={handleInputChange}
+            />
             <InputGroup.Append>
             <Form.Control onChange={handleChangeSort} as="select">
                 <option value='hot.json?'>hot</option>

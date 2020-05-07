@@ -1,7 +1,4 @@
 import React from 'react';
-import {Figure} from "react-bootstrap";
-import FigureCaption from "react-bootstrap/FigureCaption";
-import FigureImage from "react-bootstrap/FigureImage";
 import SingleImage from "../SingleImage/SingleImage";
 import SingleVideo from "../SingleVideo/SingleVideo";
 import SingleNativeVideo from "../SingleNativeVideo/SingleNativeVideo";
@@ -19,7 +16,7 @@ function SinglePost({post, allowNSFW}) {
         if (!post.data.over_18 || (post.data.over_18 && allowNSFW)) {
 
             //RENDER WEBM
-            if ((post.data.preview && 'preview' in post.data) && (post.data.media !== null && post.data.media.type === "gfycat.com")
+            if (((post.data.preview && 'preview' in post.data) && (post.data.media !== null && post.data.media.type === "gfycat.com"))
                 || (post.data.domain === "i.imgur.com" && 'preview' in post.data && 'reddit_video_preview' in post.data.preview)) {
                 if ("reddit_video_preview" in post.data.preview) {
                     return <SingleVideo post={post} style={figureStyle}/>

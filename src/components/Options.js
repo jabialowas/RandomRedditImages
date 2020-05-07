@@ -1,46 +1,46 @@
 import React, {useEffect, useState} from 'react';
-import {Accordion, Container, Form} from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import {Form} from "react-bootstrap";
 
-function Options({allowNSFW,statusNSFW}) {
+
+function Options({allowNSFW, statusNSFW}) {
     const [scroll, setScroll] = useState(false);
 
-    // useEffect(() => {
-    //             const interval = setInterval(() => {
-    //                 window.scrollBy(0,1);
-    //             },1);
-    //     return () => clearInterval(interval);
-    // },[scroll])
+
+    useEffect(() => {
+        if (scroll) {
+            const id = setInterval(() => {
+                window.scrollBy(0, 3)
+            }, 10)
+            return () => clearInterval(id);
+        }
+    }, [scroll])
+
 
     const nsfwLabel = statusNSFW ? "NSFW" : "SFW"
     return (
-       <>
-           <Accordion style={{
-               background: 'white',
-               margin: '10px',
+        <>
+            <Form>
+                <Form.Check
+                    className='nsfw-check'
+                    onClick={allowNSFW}
+                    type='switch'
+                    id='nsfw_switch'
+                    label={nsfwLabel}
+                    style={{
+                        color: statusNSFW ? "red" : "green",
+                        paddingRight: '10px',
+                    }}
+                    onColor='danger'/>
+                <Form.Check
+                    onClick={() => setScroll(prev => !prev)}
+                    type='switch'
+                    id='autoScroll'
+                    label="autoScroll"
 
-           }}>
-               <Accordion.Toggle as={Button} variant="light" eventKey="0">
-                   Options
-               </Accordion.Toggle>
-               <Accordion.Collapse eventKey="0">
-                   <>
-                   <Form.Check
-                       onClick={allowNSFW}
-                       type='switch'
-                       id='nsfw_switch'
-                       label={nsfwLabel}/>
-                   <Form.Check
-                       onClick={() =>   setScroll(prev => !prev)}
-                       type='switch'
-                       id='autoScroll'
-                       label="autoScroll"
-                   />
-                       </>
-               </Accordion.Collapse>
-           </Accordion>
+                />
 
-           </>
+            </Form>
+        </>
     );
 }
 
