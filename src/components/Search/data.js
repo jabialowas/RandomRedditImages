@@ -15067,4 +15067,3 @@ export const subredditNamesArr = [
                           ]
 
 export const noDuplicates = [...new Set(subredditNamesArr)];
-console.log(noDuplicates);

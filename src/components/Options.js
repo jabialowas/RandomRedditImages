@@ -30,7 +30,7 @@ function Options({allowNSFW, statusNSFW}) {
                         color: statusNSFW ? "red" : "green",
                         paddingRight: '10px',
                     }}
-                    onColor='danger'/>
+                />
                 <Form.Check
                     onClick={() => setScroll(prev => !prev)}
                     type='switch'

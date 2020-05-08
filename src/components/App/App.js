@@ -45,7 +45,6 @@ function App() {
                 setDataAfter(data.data.after)
             })
             .catch(error => setError(error.message))
-        console.log(error);
     }
     const getMoreImagesFromReddit = () => {
         fetch(`https://www.reddit.com/r/${subreddit}/${sort}after=${dataAfter}`)
@@ -60,7 +59,10 @@ function App() {
     useEffect(() => {
         setDataAfter(null);
         setPosts([]);
-        getImagesFromReddit();
+        if((typeof subreddit) !== 'boolean' ){
+            getImagesFromReddit();
+        }
+
     }, [subreddit, sort])
 
 
