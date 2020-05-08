@@ -7,7 +7,7 @@ function Footer() {
             <Container>
                 <Row>
                     <Col>
-                        <p>Open-source available on <a
+                        <p>By: <a href="https://github.com/jabialowas">Jakub Białowąs</a>. Open-source available on <a
                             href="https://github.com/jabialowas/RedditGibImages">Github</a>.<br/>Some images
                             may be explicit, please use it on your own risk.</p>
                     </Col>
