@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import Search from "../Search/Search";
 import SinglePost from "../SinglePost/SinglePost";
-import Options from "../Options";
+import Options from "../Options/Options";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Categories from "../Categories/Categories";

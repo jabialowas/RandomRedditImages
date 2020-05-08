@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Nav, Navbar} from "react-bootstrap";
 import Search from "../Search/Search";
-import Options from "../Options";
+import Options from "../Options/Options";
 
 function Header({searchSubreddit,changeSort,handleNsfwChange,allowNSFW}) {
     return (
@@ -13,7 +13,7 @@ function Header({searchSubreddit,changeSort,handleNsfwChange,allowNSFW}) {
 
             <Container>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                <Navbar.Brand href="/">
+                <Navbar.Brand href="/RedditGibImages">
                     <img
                         style={{
                         }}

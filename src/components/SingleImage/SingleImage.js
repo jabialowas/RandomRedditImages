@@ -11,11 +11,15 @@ function SingleImage({post}) {
     return (
         <>
 
-            <Card className=" text-white m-2 flex">
+            <Card className=" text-white m-2 flex" style={{
+                maxHeight: "100%"
+            }}>
                 <Card.Img src={imgUrl}
                           alt={post.data.title}/>
                 <Card.ImgOverlay style={{
-                    background: "rgba(0,0,0,0.6)"
+                    background: "rgba(0,0,0,0.6)",
+                    maxHeight: "100%",
+                    overflow: 'hidden'
                 }} className=" text-bottom">
                     <Card.Text>{post.data.title}</Card.Text>
                     <Card.Text>
