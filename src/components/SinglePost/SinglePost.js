@@ -23,7 +23,7 @@ function SinglePost({post, allowNSFW}) {
                 }
             }
             //RENDER GIFV
-            if(post.data.url.includes('.gifv')){
+            if (post.data.url.includes('.gifv')) {
                 return <SingleGifv post={post} style={figureStyle}/>
             }
             //RENDER IMGE/GIF

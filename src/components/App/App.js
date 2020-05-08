@@ -5,27 +5,33 @@ import './App.scss';
 import Search from "../Search/Search";
 import SinglePost from "../SinglePost/SinglePost";
 import Options from "../Options";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import Categories from "../Categories/Categories";
 
 
 function App() {
-    const [posts, setPosts] = useState([])// pusta tablica
+    const [posts, setPosts] = useState([])
     const [dataAfter, setDataAfter] = useState(null);
     const [subreddit, setSubreddit] = useState(false)
     const [sort, setSort] = useState("hot.json?")
     const [allowNSFW, toggleAllowNSFW] = useState(false);
     const [error, setError] = useState(false)
-
+    //toggle SafeForWork mode
     const handleNsfwChange = (e) => {
         toggleAllowNSFW(prev => !prev);
     }
+    // Changing subreddit state after subreddit change
     const searchSubreddit = (subredditName) => {
         setDataAfter(null);
         setSubreddit(subredditName.replace(/%20/g, " "))
     }
+    // Changing sort
     const changeSort = (sortName) => {
         setDataAfter(null);
         setSort(sortName)
     }
+    // Changing subreddit state after click on category button
     const handleButtonCategory = e => {
         e.preventDefault();
         setSubreddit(e.target.value)
@@ -56,28 +62,17 @@ function App() {
         setPosts([]);
         getImagesFromReddit();
     }, [subreddit, sort])
-    console.log(posts);
+
+
+    //    Render when post fetched
     if (posts && subreddit && !('error' in posts)) {
         return (
             <>
-                <Navbar collapseOnSelect expand="md" sticky='top' style={{
-                    background: 'white',
-                    marginBottom: '10px',
-                    padding: "10px 20px 10px 20px"
-                }}>
-                    <Navbar.Brand>123s</Navbar.Brand>
-                    <Container>
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                        <Navbar.Collapse id="responsive-navbar-nav">
-                            <Nav >
-                                <Search onSearch={subredditName => searchSubreddit(subredditName)} onSort={changeSort}/>
-                            </Nav>
-                        </Navbar.Collapse>
-                        <Options allowNSFW={handleNsfwChange} statusNSFW={allowNSFW}/>
-                    </Container>
-                </Navbar>
+                {/*NAVBAR*/}
 
-                <Container className="d-flex justify-content-center flex-column">
+                <Header searchSubreddit={searchSubreddit} changeSort={changeSort} handleNsfwChange={handleNsfwChange} allowNSFW={allowNSFW}/>
+                {/*Page Content*/}
+                <Container className="d-flex justify-content-center flex-column page-content">
                     <Row>
                         <Col>
                             {posts.map(el => <Container key={el.data.id} className="d-flex justify-content-center">
@@ -86,33 +81,28 @@ function App() {
                             )}
                         </Col>
                     </Row>
-
-                    <Button onClick={getMoreImagesFromReddit} variant="light" style={{
-                        margin: '20px'
+                    <h6 style={{
+                        margin: "10px",
+                        color: "white",
+                        textAlign: "center"
+                    }}>If nothing is displayed, make sure you have entered correct subreddit, or not viewing NSFW content in SFW mode.</h6>
+                    <Button onClick={getMoreImagesFromReddit} variant="info" style={{
+                        margin: '20px',
+                        padding: '10px'
                     }}>MORE IMAGES!</Button>
                 </Container>
+            {/*   Footer*/}
+            <Footer/>
             </>
         );
     }
     if ((!posts)) {
         return (
             <>
-                <Navbar collapseOnSelect expand="lg" sticky='top' style={{
-                    background: 'white',
-                    marginBottom: '10px',
-                    padding: "10px 20px 10px 20px"
-                }}>
-                    <Container>
-                        <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                        <Navbar.Collapse id="responsive-navbar-nav">
-                            <Nav>
-                                <Search onSearch={subredditName => searchSubreddit(subredditName)} onSort={changeSort}/>
+                {/*NAVBAR*/}
+                <Header searchSubreddit={searchSubreddit} changeSort={changeSort} handleNsfwChange={handleNsfwChange} allowNSFW={allowNSFW}/>
 
-                            </Nav>
-                        </Navbar.Collapse>
-                        <Options allowNSFW={handleNsfwChange} statusNSFW={allowNSFW}/>
-                    </Container>
-                </Navbar>
+                {/*Page content*/}
                 <Container>
                     <Row>
                         <Col>
@@ -124,68 +114,36 @@ function App() {
                         </Col>
                     </Row>
                 </Container>
+                {/*Footer*/}
+                <Footer/>
             </>
         )
     }
-
     return (
         <>
+            {/*NAVBAR*/}
+            <Header searchSubreddit={searchSubreddit} changeSort={changeSort} handleNsfwChange={handleNsfwChange} allowNSFW={allowNSFW}/>
 
-            <Navbar collapseOnSelect expand="lg" sticky='top' style={{
-                background: 'white',
-                marginBottom: '10px',
-                padding: "10px 20px 10px 20px"
-            }}>
-                <Navbar.Brand>123s</Navbar.Brand>
-                <Container>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav>
-                            <Search onSearch={subredditName => searchSubreddit(subredditName)} onSort={changeSort}/>
-                        </Nav>
-                    </Navbar.Collapse>
-                    <Options allowNSFW={handleNsfwChange} statusNSFW={allowNSFW}/>
-                </Container>
-            </Navbar>
-            <Container>
+            {/*Page Content*/}
+            <Container className="d-flex justify-content-center flex-column page-content">
                 <Row>
                     <Col>
                         <h1 style={{
-                            paddingTop: "50px ",
                             color: "white",
                             textAlign: "center"
                         }}>Select category or enter subreddit in search bar! </h1>
+                        <h6 style={{
+                            color: "white",
+                            textAlign: "center"
+                        }}>For multisubreddit search split subreddit names with spaces and select <code>"Or search:"</code> in searchbar! </h6>
                     </Col>
                 </Row>
-                <Container>
-                    <Row className="justify-content-md-center">
-                        <Col md={{offset: 2}}>
-                            <Button className="m-2" variant="outline-danger"
-                                    value="wallpapers+wallpaper+widescreenwallpaper"
-                                    onClick={handleButtonCategory}
-                            size="lg">Wallpapers</Button>
-                            <Button className="m-2" variant="outline-primary"
-                                    value="photography+pics+itookapicture+ExposurePorn"
-                                    onClick={handleButtonCategory}
-                            size="lg">Photo</Button>
-                            <Button className="m-2" variant="outline-light" value="art+sketchpad+conceptart"
-                                    onClick={handleButtonCategory}
-                            size="lg">Art</Button>
-                            <Button className="m-2" variant="outline-info" value="pcgaming+gaming+games"
-                                    onClick={handleButtonCategory}
-                            size="lg">Gaming</Button>
-                            <Button className="m-2" variant="outline-warning" value="funny+wtf"
-                                    onClick={handleButtonCategory}
-                            size="lg">Funny</Button>
-                            <Button className="m-2" variant="outline-success"
-                                    value="awww+thecatdimension+Catloaf+NatureIsFuckingLit"
-                                    onClick={handleButtonCategory}
-                            size="lg">Animals</Button>
-                        </Col>
-                    </Row>
-
-                </Container>
+                {/*Category buttons*/}
+           <Categories handleButtonCategory={handleButtonCategory}/>
             </Container>
+
+            {/*Footer*/}
+            <Footer/>
         </>
     )
 }

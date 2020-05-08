@@ -5,11 +5,11 @@ import {Form} from "react-bootstrap";
 function Options({allowNSFW, statusNSFW}) {
     const [scroll, setScroll] = useState(false);
 
-
     useEffect(() => {
         if (scroll) {
             const id = setInterval(() => {
                 window.scrollBy(0, 3)
+                console.log("test");
             }, 10)
             return () => clearInterval(id);
         }
@@ -36,7 +36,6 @@ function Options({allowNSFW, statusNSFW}) {
                     type='switch'
                     id='autoScroll'
                     label="autoScroll"
-
                 />
 
             </Form>
