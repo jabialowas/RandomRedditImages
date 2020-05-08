@@ -8,23 +8,23 @@ function Header({searchSubreddit,changeSort,handleNsfwChange,allowNSFW}) {
         <Navbar collapseOnSelect expand="md" sticky='top' style={{
             background: 'white',
             marginBottom: '10px',
-            padding: "10px 20px 10px 20px"
+            padding: "10px 20px 10px 20px",
+            display: 'flex',
+            justifyContent: 'center'
         }}>
-
-            <Container>
+            <Navbar.Brand href="/RedditGibImages">
+                <img
+                    style={{
+                    }}
+                    alt=""
+                    src="/RedditGibImages/logo.png"
+                    width="auto"
+                    height="40vh"
+                    className='ml-10'
+                /></Navbar.Brand>
+            <Container >
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                <Navbar.Brand href="/RedditGibImages">
-                    <img
-                        style={{
-                        }}
-                        alt=""
-                        src="logo.png"
-                        width="auto"
-                        height="64px"
-                        className='ml-10'
-                    /></Navbar.Brand>
                 <Navbar.Collapse id="responsive-navbar-nav">
-
                     <Nav >
                         <Search onSearch={subredditName => searchSubreddit(subredditName)} onSort={changeSort}/>
                     </Nav>
