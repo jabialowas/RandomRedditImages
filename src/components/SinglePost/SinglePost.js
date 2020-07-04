@@ -17,7 +17,8 @@ function SinglePost({post, allowNSFW}) {
 
             //RENDER WEBM
             if (((post.data.preview && 'preview' in post.data) && (post.data.media !== null && post.data.media.type === "gfycat.com"))
-                || (post.data.domain === "i.imgur.com" && 'preview' in post.data && 'reddit_video_preview' in post.data.preview)) {
+                || (post.data.domain === "i.imgur.com" && 'preview' in post.data && 'reddit_video_preview' in post.data.preview)
+                ||  (post.data.secure_media !== null  && post.data.secure_media.type === 'redgifs.com')){
                 if ("reddit_video_preview" in post.data.preview) {
                     return <SingleVideo post={post} style={figureStyle}/>
                 }
