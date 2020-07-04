@@ -10,15 +10,22 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 function Search({onSearch, onSort,}) {
     const [subredditName, setSubredditName] = useState("");
+    const [tempArr, setTempArr] = useState([])
+
     const handleInputChange = e => {
-        if (e instanceof Object) {
-            setSubredditName(e)
-        }
+        console.log(e);
+     e.map( el => {
+            if(el.subredditNames){
+                setTempArr(prev => [...prev, el.subredditNames])
+            } else {
+                setTempArr( prev => [...prev, el])
+            }
+        })
     }
     const handleChangeSubreddit = e => {
         e.preventDefault()
         if (typeof subredditName !== 'undefined') {
-            onSearch(subredditName.toString().split(",").join("+"))
+            onSearch(tempArr.toString().split(",").join("+"))
         }
     }
 
