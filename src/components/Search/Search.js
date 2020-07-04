@@ -61,7 +61,11 @@ function Search({onSearch, onSort,}) {
                     <Form.Control onChange={handleChangeSort} as="select">
                         <option value='hot.json?'>hot</option>
                         <option value='new.json?'>new</option>
-                        <option value='top.json?t=all&'>top</option>
+                        <option value='top.json?t=day&'>top today</option>
+                        <option value='top.json?t=week&'>top week</option>
+                        <option value='top.json?t=month&'>top month</option>
+                        <option value='top.json?t=year&'>top year</option>
+                        <option value='top.json?t=all&'>top all</option>
                     </Form.Control>
                     <Button variant="primary" onClick={handleChangeSubreddit}> GO! </Button>
                 </InputGroup.Append>
