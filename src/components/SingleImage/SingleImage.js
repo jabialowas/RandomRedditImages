@@ -1,7 +1,5 @@
 import React from 'react';
 import {Button, Card,} from "react-bootstrap";
-import FigureImage from "react-bootstrap/FigureImage";
-import FigureCaption from "react-bootstrap/FigureCaption";
 
 function SingleImage({post}) {
 

@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Col, Container, Nav, Navbar, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
-import Search from "../Search/Search";
 import SinglePost from "../SinglePost/SinglePost";
-import Options from "../Options/Options";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Categories from "../Categories/Categories";
@@ -54,8 +52,6 @@ function App() {
                 setDataAfter(data.data.after)
             })
     }
-
-
     useEffect(() => {
         setDataAfter(null);
         setPosts([]);
