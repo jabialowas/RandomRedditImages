@@ -17,7 +17,12 @@ function SingleImage({post}) {
                 maxHeight: "90vh",
                 overflow: "hidden"
             }}>
-                <Card.Img src={imgUrl}
+                <Card.Img
+                    style ={{
+                        maxHeight: '90vh',
+                        width: 'auto'
+                    }}
+                    src={imgUrl}
                           alt={post.data.title}
                 />
                 <Card.ImgOverlay style={{
