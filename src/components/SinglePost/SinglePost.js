@@ -10,7 +10,7 @@ function SinglePost({post, allowNSFW}) {
     const figureStyle = {
         background: '#ddd',
         margin: '20px',
-        padding: '10px'
+        padding: '10px',
     }
     if (post.data.preview) {
         if (!post.data.over_18 || (post.data.over_18 && allowNSFW)) {
@@ -28,7 +28,7 @@ function SinglePost({post, allowNSFW}) {
                 return <SingleGifv post={post} style={figureStyle}/>
             }
             //RENDER IMGE/GIF
-            if (post.data.preview && !post.data.is_video) {
+            if (post.data.preview && !post.data.is_video && post.data.preview && post.data.preview.images[0].source.height > 256) {
                 if ("variants" in post.data.preview.images[0] && "gif" in post.data.preview.images[0].variants) {
                     return <SingleGif post={post} style={figureStyle}/>
                 }

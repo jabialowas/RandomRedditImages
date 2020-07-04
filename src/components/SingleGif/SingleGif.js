@@ -8,10 +8,13 @@ function SingleGif({post, style}) {
         <>
             <Figure style={style}>
                 <FigureImage
+                    style={{
+                        maxHeight: '80vh'
+                    }}
                     variant="top"
                     src={post.data.url}
                     height={post.data.preview.images[0].source.height}
-                    width={post.data.preview.images[0].source.width}
+                    width='auto'
                     margin='10px'
                     controls
                     autoPlay/>

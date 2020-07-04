@@ -6,7 +6,9 @@ function SingleNativeVideo({post, style}) {
     return (
         <>
             <Figure style={style}>
-                <video width="100%"
+                <video
+                    style='max-height: 90vh'
+                    width="100%"
                        src={post.data.media.reddit_video.fallback_url} controls/>
 
                 <FigureCaption>
