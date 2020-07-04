@@ -52,6 +52,7 @@ function App() {
                 setDataAfter(data.data.after)
             })
     }
+
     useEffect(() => {
         setDataAfter(null);
         setPosts([]);

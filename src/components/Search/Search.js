@@ -4,24 +4,21 @@ import Button from "react-bootstrap/Button";
 import {noDuplicates} from "./data";
 import {Typeahead} from "react-bootstrap-typeahead";
 
+
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+
+
 function Search({onSearch, onSort,}) {
     const [subredditName, setSubredditName] = useState("");
-
     const handleInputChange = e => {
-        console.log(e[0]);
-        if (e[0] instanceof Object) {
-            setSubredditName(e[0].label)
-        } else {
-            setSubredditName(e[0])
+        if (e instanceof Object) {
+            setSubredditName(e)
         }
     }
     const handleChangeSubreddit = e => {
         e.preventDefault()
-        setSubredditName(e.target.value)
-        console.log(e.target.value);
-        console.log(subredditName);
         if (typeof subredditName !== 'undefined') {
-            onSearch(subredditName.toString().split(" ").join("+"))
+            onSearch(subredditName.toString().split(",").join("+"))
         }
     }
 
@@ -39,9 +36,14 @@ function Search({onSearch, onSort,}) {
                 </InputGroup.Prepend>
 
                 <Typeahead
+                    style={{
+                        width: '35vw'
+                    }}
+                    multiple
                     allowNew
                     selectHintOnEnter
                     minLength={2}
+                    labelKey='subredditNames'
                     id="subredditNames"
                     newSelectionPrefix="Or search:  "
                     options={noDuplicates}
