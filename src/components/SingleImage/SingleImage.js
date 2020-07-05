@@ -15,12 +15,14 @@ function SingleImage({post}) {
 
             <Card className=" text-white m-2 flex" style={{
                 maxHeight: "90vh",
-                overflow: "hidden"
+                maxWidth: '100vw',
+                overflow: "hidden",
             }}>
                 <Card.Img
                     style ={{
                         maxHeight: '90vh',
-                        width: 'auto'
+                        maxWidth: '100vw',
+                        objectFit:'cover'
                     }}
                     src={imgUrl}
                           alt={post.data.title}
