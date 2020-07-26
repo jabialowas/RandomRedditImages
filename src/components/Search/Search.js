@@ -26,6 +26,7 @@ function Search({onSearch, onSort,}) {
         e.preventDefault()
         if (typeof subredditName !== 'undefined') {
             onSearch(tempArr.toString().split(",").join("+"))
+            setTempArr([]);
         }
     }
 

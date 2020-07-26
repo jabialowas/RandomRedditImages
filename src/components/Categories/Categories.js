@@ -5,7 +5,7 @@ function Categories({handleButtonCategory}) {
     return (
         <Container >
             <Row className="d-flex justify-content-center align-items-center flex-column">
-                <Col md={{offset: 2}}>
+                <Col className="d-flex justify-content-center align-items-center flex-wrap">
                     <Button className="m-2" variant="outline-danger"
                             value="wallpapers+wallpaper+widescreenwallpaper"
                             onClick={handleButtonCategory}
